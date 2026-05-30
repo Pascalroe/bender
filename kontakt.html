@@ -3,438 +3,610 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt - Physiotherapie Bender</title>
+  <title>Kontakt & Termin - Physiotherapie Bender</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --font-heading: 'Playfair Display', serif; --font-body: 'Inter', sans-serif; }
-    body { font-family: var(--font-body); }
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .contact-hero {
-      padding: var(--spacing-2xl) 0;
-      background-color: var(--beige);
-      text-align: center;
+    :root {
+      --primary: #00796B;
+      --primary-dark: #00695C;
+      --primary-light: #4DB6AC;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
     }
-    .contact-hero-title {
-      font-size: 2rem;
-      margin-bottom: var(--spacing-sm);
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    @media (min-width: 768px) {
-      .contact-hero-title { font-size: 3rem; }
+    
+    body {
+      font-family: var(--font-body);
+      color: #2B2B2B;
+      line-height: 1.6;
     }
-    .contact-grid {
-      display: grid;
-      gap: var(--spacing-2xl);
-      padding: var(--spacing-2xl) 0;
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    @media (min-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr 1fr; }
+    
+    .top-bar {
+      background-color: #00796B;
+      color: white;
+      padding: 10px 0;
+      font-size: 0.875rem;
     }
-    .contact-info-section {
-      margin-bottom: var(--spacing-lg);
-    }
-    .contact-info-title {
-      font-size: 1.25rem;
-      margin-bottom: var(--spacing-sm);
-      color: var(--blaugruen);
-    }
-    .contact-phone {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--blaugruen);
-      display: inline-flex;
-      align-items: center;
-      gap: var(--spacing-xs);
-      margin-bottom: var(--spacing-md);
-    }
-    .contact-phone:hover {
-      color: var(--anthrazit);
-    }
-    .contact-details {
-      display: grid;
-      gap: var(--spacing-sm);
-    }
-    .contact-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--spacing-sm);
-    }
-    .contact-detail svg {
-      flex-shrink: 0;
-      color: var(--blaugruen);
-    }
-    .opening-hours {
-      display: grid;
-      gap: var(--spacing-xs);
-    }
-    .opening-hours-item {
+    
+    .top-bar .container {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .opening-hours-day {
-      font-weight: 500;
-    }
-    .opening-hours-time {
-      opacity: 0.8;
-    }
-    .directions-list {
-      display: grid;
-      gap: var(--spacing-sm);
-    }
-    .directions-item {
+    
+    .top-bar a {
+      color: white;
+      text-decoration: none;
       display: flex;
-      align-items: flex-start;
-      gap: var(--spacing-sm);
+      align-items: center;
+      gap: 6px;
     }
-    .directions-item svg {
-      flex-shrink: 0;
-      color: var(--blaugruen);
-      margin-top: 2px;
+    
+    .header {
+      background: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
     }
-    .map-placeholder {
+    
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #00796B;
+      text-decoration: none;
+    }
+    
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    
+    .nav-links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #2B2B2B;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00796B;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: #00796B;
+    }
+    
+    .nav-links a:hover::after {
       width: 100%;
-      height: 300px;
-      background-color: var(--salbeigruen);
-      border-radius: var(--radius-md);
+    }
+    
+    .btn-cta {
+      background: #00796B;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,121,107,0.25);
+    }
+    
+    .btn-cta:hover {
+      background: #00695C;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,121,107,0.35);
+    }
+    
+    .page-header {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 50%, #b2dfdb 100%);
+      padding: 60px 0 80px;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    
+    .page-header p {
+      font-size: 1.125rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contact-section {
+      padding: 80px 0;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    
+    .contact-info h2 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+    
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    
+    .contact-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #00796B 0%, #4DB6AC 100%);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white-warm);
-      font-weight: 500;
+      color: white;
+      font-size: 1.25rem;
+      flex-shrink: 0;
     }
-    .form-row {
-      display: grid;
-      gap: var(--spacing-md);
+    
+    .contact-item h3 {
+      font-family: var(--font-heading);
+      font-size: 1.0625rem;
+      color: #1a1a1a;
+      margin-bottom: 4px;
     }
-    @media (min-width: 480px) {
-      .form-row { grid-template-columns: 1fr 1fr; }
+    
+    .contact-item p, .contact-item a {
+      font-size: 0.9375rem;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
-    .info-sections {
-      display: grid;
-      gap: var(--spacing-2xl);
-      margin-top: var(--spacing-2xl);
+    
+    .contact-item a:hover {
+      color: #00796B;
     }
-    .info-section {
-      background-color: var(--white-warm);
-      padding: var(--spacing-lg);
-      border-radius: var(--radius-md);
+    
+    .opening-hours {
+      margin-top: 40px;
+      padding: 32px;
+      background: #f8f9fa;
+      border-radius: 16px;
     }
-    .info-section-title {
-      font-size: 1.5rem;
-      margin-bottom: var(--spacing-md);
-      color: var(--blaugruen);
+    
+    .opening-hours h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
     }
-    .opening-hours-table {
-      width: 100%;
-      border-collapse: collapse;
+    
+    .hours-list {
+      list-style: none;
     }
-    .opening-hours-table th,
-    .opening-hours-table td {
-      padding: var(--spacing-sm);
-      text-align: left;
-      border-bottom: 1px solid var(--beige);
+    
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.9375rem;
     }
-    .opening-hours-table th {
-      font-weight: 600;
-      color: var(--blaugruen);
-    }
-    .opening-hours-table tr:last-child td {
+    
+    .hours-list li:last-child {
       border-bottom: none;
     }
-    .directions-grid {
+    
+    .hours-list .day {
+      color: #2B2B2B;
+      font-weight: 500;
+    }
+    
+    .hours-list .time {
+      color: #00796B;
+    }
+    
+    .contact-form-wrapper {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+    
+    .contact-form h2 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    
+    .contact-form > p {
+      font-size: 0.9375rem;
+      color: #666;
+      margin-bottom: 28px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #2B2B2B;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: #2B2B2B;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #00796B;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(0,121,107,0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    
+    .form-row {
       display: grid;
-      gap: var(--spacing-lg);
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
-    @media (min-width: 768px) {
-      .directions-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    .directions-block {
-      margin-bottom: var(--spacing-md);
-    }
-    .directions-block:last-child {
-      margin-bottom: 0;
-    }
-    .directions-subtitle {
-      font-size: 1.125rem;
+    
+    .btn-submit {
+      width: 100%;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #00796B 0%, #00695C 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: var(--spacing-sm);
-      color: var(--anthrazit);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,121,107,0.3);
     }
-    .directions-text {
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,121,107,0.4);
+    }
+    
+    .map-section {
+      padding: 0 0 80px;
+    }
+    
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 400px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 1rem;
+    }
+    
+    .footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-brand .logo {
+      color: white;
+      display: block;
+      margin-bottom: 16px;
+    }
+    
+    .footer-brand p {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
       line-height: 1.7;
     }
-    .emergency-notice {
-      background-color: var(--anthrazit);
-      color: var(--white-warm);
-      padding: var(--spacing-lg);
-      border-radius: var(--radius-md);
+    
+    .footer h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer ul li {
+      margin-bottom: 10px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer a:hover {
+      color: #4DB6AC;
+    }
+    
+    .footer-bottom {
       text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.5);
     }
-    .emergency-notice-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: var(--spacing-sm);
-    }
-    .emergency-notice-text {
-      opacity: 0.9;
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .top-bar .container { flex-direction: column; text-align: center; }
+      .page-header h1 { font-size: 2rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <a href="tel:01234567890">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          01234 / 567890
+        </a>
+      </div>
+      <div class="top-bar-right">
+        <a href="#">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Musterstraße 12, 12345 Musterstadt
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="header">
     <div class="container">
       <a href="index.html" class="logo">Physiotherapie Bender</a>
-      <button class="nav-toggle" aria-label="Menü öffnen">
-        <span></span>
-      </button>
-      <nav class="nav-menu">
-        <button class="close-btn" aria-label="Menü schließen">×</button>
-        <ul class="nav-list">
-          <li><a href="leistungen.html" class="nav-link">Leistungen</a></li>
-          <li><a href="index.html#beschwerden" class="nav-link">Beschwerden</a></li>
-          <li><a href="index.html#team" class="nav-link">Team</a></li>
-          <li><a href="kontakt.html" class="nav-link">Kontakt</a></li>
-        </ul>
+      <nav class="main-nav">
+        <div class="nav-links">
+          <a href="index.html">START</a>
+          <a href="leistungen.html">LEISTUNGEN</a>
+          <a href="index.html#team">TEAM</a>
+          <a href="kontakt.html">KONTAKT</a>
+        </div>
+        <a href="kontakt.html" class="btn-cta">Termin vereinbaren</a>
       </nav>
-      <div class="nav-overlay"></div>
     </div>
   </header>
 
-  <section class="contact-hero reveal">
+  <!-- Page Header -->
+  <section class="page-header">
     <div class="container">
-      <h1 class="contact-hero-title">Kontakt & Termin</h1>
-      <p>Wir freuen uns auf Ihre Nachricht oder Ihren Anruf.</p>
+      <h1>Kontakt und Termin</h1>
+      <p>Vereinbaren Sie Ihren Termin noch heute. Wir freuen uns auf Sie!</p>
     </div>
   </section>
 
-  <section class="contact reveal">
+  <!-- Contact Section -->
+  <section class="contact-section">
     <div class="container">
       <div class="contact-grid">
-        <div class="contact-left">
-          <a href="tel:+4976569258" class="contact-phone">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            (07656) 9258
-          </a>
-
-          <div class="contact-info-section">
-            <h2 class="contact-info-title">Kontaktdaten</h2>
-            <div class="contact-details">
-              <div class="contact-detail">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <span>info@physio-bender.de</span>
-              </div>
-              <div class="contact-detail">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-                <span>Fax: (07656) 397 99 97</span>
-              </div>
-              <div class="contact-detail">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                <span>Schluchsee</span>
-              </div>
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2>Kontaktdaten</h2>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div>
+              <h3>Telefon</h3>
+              <a href="tel:01234567890">01234 / 567890</a>
             </div>
           </div>
-
-          <div class="contact-info-section">
-            <h2 class="contact-info-title">Öffnungszeiten</h2>
-            <div class="opening-hours">
-              <div class="opening-hours-item">
-                <span class="opening-hours-day">Montag - Donnerstag</span>
-                <span class="opening-hours-time">07:00 - 19:00 Uhr</span>
-              </div>
-              <div class="opening-hours-item">
-                <span class="opening-hours-day">Freitag</span>
-                <span class="opening-hours-time">07:00 - 16:00 Uhr</span>
-              </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h3>E-Mail</h3>
+              <a href="mailto:info@physio-bender.de">info@physio-bender.de</a>
             </div>
           </div>
-
-          <div class="contact-info-section">
-            <h2 class="contact-info-title">Anfahrt</h2>
-            <div class="directions-list">
-              <div class="directions-item">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                <span>Unsere Praxis befindet sich in zentraler Lage in Schluchsee.</span>
-              </div>
-              <div class="directions-item">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
-                <span>Kostenlose Parkplätze direkt an der Praxis vorhanden.</span>
-              </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             </div>
+            <div>
+              <h3>Adresse</h3>
+              <p>Musterstraße 12<br>12345 Musterstadt</p>
+            </div>
+          </div>
+          
+          <div class="opening-hours">
+            <h3>Öffnungszeiten</h3>
+            <ul class="hours-list">
+              <li><span class="day">Montag</span><span class="time">08:00 - 18:00</span></li>
+              <li><span class="day">Dienstag</span><span class="time">08:00 - 18:00</span></li>
+              <li><span class="day">Mittwoch</span><span class="time">08:00 - 18:00</span></li>
+              <li><span class="day">Donnerstag</span><span class="time">08:00 - 18:00</span></li>
+              <li><span class="day">Freitag</span><span class="time">08:00 - 16:00</span></li>
+              <li><span class="day">Samstag</span><span class="time">09:00 - 13:00</span></li>
+              <li><span class="day">Sonntag</span><span class="time">Geschlossen</span></li>
+            </ul>
           </div>
         </div>
-
-        <div class="contact-right">
-          <h2 class="contact-info-title">Terminanfrage</h2>
-          <form class="contact-form">
+        
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <form class="contact-form" action="#" method="POST">
+            <h2>Terminanfrage</h2>
+            <p>Füllen Sie das Formular aus, wir melden uns schnellstmöglich bei Ihnen.</p>
+            
             <div class="form-row">
               <div class="form-group">
-                <label for="name" class="form-label">Name *</label>
-                <input type="text" id="name" name="name" class="form-input" required>
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Ihr Name">
               </div>
               <div class="form-group">
-                <label for="phone" class="form-label">Telefon *</label>
-                <input type="tel" id="phone" name="phone" class="form-input" required>
+                <label for="phone">Telefon *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Ihre Telefonnummer">
               </div>
             </div>
+            
             <div class="form-group">
-              <label for="email" class="form-label">E-Mail</label>
-              <input type="email" id="email" name="email" class="form-input">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" placeholder="Ihre E-Mail-Adresse">
             </div>
+            
             <div class="form-group">
-              <label for="appointment" class="form-label">Wunschtermin</label>
-              <input type="text" id="appointment" name="appointment" class="form-input" placeholder="z.B. Mo 14:00 oder nach Absprache">
+              <label for="subject">Behandlungswunsch</label>
+              <select id="subject" name="subject">
+                <option value="">Bitte wählen...</option>
+                <option value="manual">Manuelle Therapie</option>
+                <option value="krankengymnastik">Krankengymnastik</option>
+                <option value="massage">Massage</option>
+                <option value="sport">Sportphysiotherapie</option>
+                <option value="termin">Allgemeine Terminfrage</option>
+                <option value="sonstiges">Sonstiges</option>
+              </select>
             </div>
+            
             <div class="form-group">
-              <label for="message" class="form-label">Nachricht *</label>
-              <textarea id="message" name="message" class="form-textarea" required></textarea>
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" placeholder="Ihre Nachricht an uns..."></textarea>
             </div>
-            <button type="submit" class="btn">Terminanfrage senden</button>
+            
+            <button type="submit" class="btn-submit">Terminanfrage senden</button>
           </form>
         </div>
       </div>
+    </div>
+  </section>
 
-        <div class="contact-info-section" style="margin-top: var(--spacing-2xl);">
-          <h2 class="contact-info-title" style="text-align: center;">So finden Sie uns</h2>
-          <div class="map-placeholder">
-            <span>Google Maps Platzhalter</span>
-          </div>
-        </div>
-
-        <div class="info-sections reveal">
-          <div class="info-section">
-            <h2 class="info-section-title">Öffnungszeiten</h2>
-            <table class="opening-hours-table">
-              <thead>
-                <tr>
-                  <th>Tag</th>
-                  <th>Öffnungszeiten</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Montag - Donnerstag</td>
-                  <td>07:00 - 12:00 und 13:00 - 19:00</td>
-                </tr>
-                <tr>
-                  <td>Freitag</td>
-                  <td>07:00 - 12:00 und 13:00 - 16:00</td>
-                </tr>
-                <tr>
-                  <td>Samstag</td>
-                  <td>Nach Vereinbarung</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="info-section">
-            <h2 class="info-section-title">Anfahrt</h2>
-            <div class="directions-grid">
-              <div class="directions-block">
-                <h3 class="directions-subtitle">Mit dem Auto</h3>
-                <p class="directions-text">Ausführliche Anleitung aus Richtung Freiburg, Basel oder Donaueschingen entlang der Bundesstraße B31 bzw. B500 nach Schluchsee. Folgen Sie der Beschilderung zum Ortsteil Schluchsee.</p>
-              </div>
-              <div class="directions-block">
-                <h3 class="directions-subtitle">Parkmöglichkeiten</h3>
-                <p class="directions-text">Kostenlose Parkplätze direkt vor dem Haus. Zusätzlich steht ein Behindertenparkplatz zur Verfügung.</p>
-              </div>
-              <div class="directions-block">
-                <h3 class="directions-subtitle">Mit Bus und Bahn</h3>
-                <p class="directions-text">Nächste Haltestelle: Schluchsee Ort (ca. 200m entfernt). Die Buslinie verbindet uns regelmäßig mit dem Bahnhof in Schluchsee.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="emergency-notice">
-            <h2 class="emergency-notice-title">Wichtiger Hinweis für Notfälle</h2>
-            <p class="emergency-notice-text">Außerhalb unserer Öffnungszeiten wenden Sie sich bitte an den ärztlichen Bereitschaftsdienst unter 116117</p>
-          </div>
-        </div>
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2427.726102469463!2d13.4023!3d52.52!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDMxJzA4LjYiTiAxM8KwMjQnMTEuNCJX!5e0!3m2!1sde!2sde!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo">Physiotherapie Bender</a>
-          <p class="footer-text">Ihre kompetente Praxis für moderne Physiotherapie und persönliche Betreuung seit 2002.</p>
+          <p>Ihre kompetente Praxis für moderne Physiotherapie und persönliche Betreuung seit 2002.</p>
         </div>
         <div>
-          <h4 class="footer-title">Kontakt</h4>
-          <ul class="footer-links">
-            <li class="footer-contact-item">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              <span>(07656) 9258</span>
-            </li>
-            <li class="footer-contact-item">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span>info@physio-bender.de</span>
-            </li>
-            <li class="footer-contact-item">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <span>Schluchsee</span>
-            </li>
+          <h4>Kontakt</h4>
+          <ul>
+            <li>01234 / 567890</li>
+            <li>info@physio-bender.de</li>
+            <li>Musterstraße 12</li>
+            <li>12345 Musterstadt</li>
           </ul>
         </div>
         <div>
-          <h4 class="footer-title">Öffnungszeiten</h4>
-          <ul class="footer-links">
-            <li>Mo - Do: 07:00 - 19:00 Uhr</li>
-            <li>Fr: 07:00 - 16:00 Uhr</li>
+          <h4>Öffnungszeiten</h4>
+          <ul>
+            <li>Mo - Fr: 08:00 - 18:00</li>
+            <li>Sa: 09:00 - 13:00</li>
+            <li>So: Geschlossen</li>
           </ul>
         </div>
         <div>
-          <h4 class="footer-title">Links</h4>
-          <ul class="footer-links">
+          <h4>Links</h4>
+          <ul>
             <li><a href="leistungen.html">Leistungen</a></li>
             <li><a href="index.html#team">Team</a></li>
             <li><a href="kontakt.html">Kontakt</a></li>
-            <li><a href="#">Datenschutz</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Physiotherapie Bender. Alle Rechte vorbehalten.</p>
+        <p>© 2024 Physiotherapie Bender. Alle Rechte vorbehalten.</p>
       </div>
     </div>
   </footer>
-
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const closeBtn = document.querySelector('.nav-menu .close-btn');
-    const navOverlay = document.querySelector('.nav-overlay');
-
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.add('active');
-      navOverlay.classList.add('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      navOverlay.classList.remove('active');
-    });
-
-    navOverlay.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      navOverlay.classList.remove('active');
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.reveal');
-      window.addEventListener('scroll', () => {
-        reveals.forEach(el => {
-          if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-        });
-      });
-    });
-  </script>
 </body>
 </html>

@@ -3,384 +3,769 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Physiotherapie Bender - Ihre Praxis für moderne Physiotherapie</title>
+  <title>Physiotherapie Bender - Ihre Praxis für Bewegung und Gesundheit</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --font-heading: 'Playfair Display', serif; --font-body: 'Inter', sans-serif; }
-    body { font-family: var(--font-body); }
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .trust-bar { background-color: var(--blaugruen); padding: var(--spacing-md) 0; }
-    .trust-bar .container { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-lg); }
-    .trust-item { display: flex; align-items: center; gap: var(--spacing-xs); color: var(--white-warm); font-size: 0.9375rem; }
-    .trust-icon { width: 24px; height: 24px; }
-    .process { padding: var(--spacing-2xl) 0; }
-    .process-grid { display: grid; gap: var(--spacing-lg); }
-    @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
-    .process-step { text-align: center; position: relative; }
-    .process-number { width: 48px; height: 48px; background-color: var(--blaugruen); color: var(--white-warm); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto var(--spacing-sm); }
-    .process-title { font-size: 1.125rem; margin-bottom: var(--spacing-xs); }
-    .process-text { font-size: 0.875rem; opacity: 0.8; }
-    .cards-6 { display: grid; gap: var(--spacing-md); }
-    @media (min-width: 480px) { .cards-6 { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 768px) { .cards-6 { grid-template-columns: repeat(3, 1fr); } }
-    .footer-contact-item { display: flex; gap: var(--spacing-xs); margin-bottom: var(--spacing-xs); font-size: 0.875rem; }
+    :root {
+      --primary: #00796B;
+      --primary-dark: #00695C;
+      --primary-light: #4DB6AC;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    
+    .top-bar {
+      background-color: #00796B;
+      color: white;
+      padding: 10px 0;
+      font-size: 0.875rem;
+    }
+    
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .top-bar-left, .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .top-bar a:hover {
+      opacity: 0.85;
+    }
+    
+    .header {
+      background: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #00796B;
+    }
+    
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    
+    .nav-links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #2B2B2B;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00796B;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: #00796B;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .btn-cta {
+      background: #00796B;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,121,107,0.25);
+    }
+    
+    .btn-cta:hover {
+      background: #00695C;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,121,107,0.35);
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 50%, #b2dfdb 100%);
+      padding: 100px 0 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 70%;
+      height: 150%;
+      background: radial-gradient(ellipse, rgba(0,121,107,0.08) 0%, transparent 70%);
+    }
+    
+    .hero-content {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: #4a4a4a;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    
+    .hero .btn-cta {
+      font-size: 1rem;
+      padding: 16px 36px;
+    }
+    
+    .trust-bar {
+      background: white;
+      padding: 40px 0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.04);
+    }
+    
+    .trust-items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #00796B 0%, #4DB6AC 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .trust-text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+    
+    .trust-text span {
+      font-size: 0.8125rem;
+      color: #666;
+    }
+    
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    
+    .section-header p {
+      font-size: 1.0625rem;
+      color: #666;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: all 0.4s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    
+    .service-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .service-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .service-content {
+      padding: 24px;
+    }
+    
+    .service-content h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+    
+    .service-content p {
+      font-size: 0.9375rem;
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .usp-section {
+      background: linear-gradient(135deg, #00796B 0%, #004D40 100%);
+      padding: 80px 0;
+    }
+    
+    .usp-section .section-header h2 {
+      color: white;
+    }
+    
+    .usp-section .section-header p {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 24px;
+    }
+    
+    .usp-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 36px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .usp-card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+    }
+    
+    .usp-icon {
+      width: 64px;
+      height: 64px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #00796B;
+      font-size: 1.5rem;
+    }
+    
+    .usp-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 10px;
+    }
+    
+    .usp-card p {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+    
+    .team-section {
+      background: #f8f9fa;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    
+    .team-card {
+      text-align: center;
+    }
+    
+    .team-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover .team-avatar {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .team-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    
+    .team-card .role {
+      font-size: 0.875rem;
+      color: #00796B;
+      font-weight: 500;
+    }
+    
+    .complaints-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    
+    .complaint-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 180px;
+      transition: all 0.3s ease;
+    }
+    
+    .complaint-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    
+    .complaint-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .complaint-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    }
+    
+    .complaint-card span {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      color: white;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      z-index: 1;
+    }
+    
+    .footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-brand .logo {
+      color: white;
+      display: block;
+      margin-bottom: 16px;
+    }
+    
+    .footer-brand p {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+    
+    .footer h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer ul li {
+      margin-bottom: 10px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer a:hover {
+      color: #4DB6AC;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .top-bar .container { flex-direction: column; text-align: center; }
+      .hero h1 { font-size: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .complaints-grid { grid-template-columns: repeat(2, 1fr); }
+      .usp-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .trust-items { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <a href="tel:01234567890">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          01234 / 567890
+        </a>
+      </div>
+      <div class="top-bar-right">
+        <a href="#">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Musterstraße 12, 12345 Musterstadt
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="header">
     <div class="container">
       <a href="#" class="logo">Physiotherapie Bender</a>
-      <button class="nav-toggle" aria-label="Menü öffnen">
-        <span></span>
-      </button>
-      <nav class="nav-menu">
-        <button class="close-btn" aria-label="Menü schließen">×</button>
-        <ul class="nav-list">
-          <li><a href="leistungen.html" class="nav-link">Leistungen</a></li>
-          <li><a href="#beschwerden" class="nav-link">Beschwerden</a></li>
-
-          <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
-        </ul>
+      <nav class="main-nav">
+        <div class="nav-links">
+          <a href="#">START</a>
+          <a href="#">LEISTUNGEN</a>
+          <a href="#">TEAM</a>
+          <a href="#">KONTAKT</a>
+        </div>
+        <a href="#" class="btn-cta">Termin vereinbaren</a>
       </nav>
-      <div class="nav-overlay"></div>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Moderne Physiotherapie mit persönlicher Betreuung</h1>
-        <p class="hero-subtitle">Willkommen bei Physiotherapie Bender – Ihre kompetente Praxis für Bewegung und Gesundheit seit 2002.</p>
-        <a href="#kontakt" class="btn">Termin vereinbaren</a>
+        <h1>Ihre Physiotherapie-Praxis für Bewegung und Gesundheit</h1>
+        <p class="hero-subtitle">Ganzheitliche Therapie mit modernsten Methoden. Wir helfen Ihnen, wieder schmerzfrei und aktiv zu leben.</p>
+        <a href="#" class="btn-cta">Termin vereinbaren</a>
       </div>
     </div>
   </section>
 
-  <section class="trust-bar reveal">
+  <!-- Trust Bar -->
+  <div class="trust-bar">
     <div class="container">
-      <div class="trust-item">
-        <svg class="trust-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span>Seit 2002</span>
-      </div>
-      <div class="trust-item">
-        <svg class="trust-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span>Evidenzbasiert</span>
-      </div>
-      <div class="trust-item">
-        <svg class="trust-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
-        <span>Moderne Diagnostik</span>
-      </div>
-      <div class="trust-item">
-        <svg class="trust-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-        <span>Individuelle Therapie</span>
+      <div class="trust-items">
+        <div class="trust-item">
+          <div class="trust-icon">★</div>
+          <div class="trust-text">
+            <strong>Seit 2002</strong>
+            <span>Erfahrung und Kompetenz</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✓</div>
+          <div class="trust-text">
+            <strong>Erfahrene Therapeuten</strong>
+            <span>Qualifiziertes Fachpersonal</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">♥</div>
+          <div class="trust-text">
+            <strong>Individuelle Betreuung</strong>
+            <span>Persönliche Behandlungspläne</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">⚡</div>
+          <div class="trust-text">
+            <strong>Moderne Therapien</strong>
+            <span>Aktuelle Behandlungsmethoden</span>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="features reveal">
+  <!-- Leistungen -->
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Warum Physiotherapie Bender?</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div class="section-header">
+        <h2>Unsere Leistungen</h2>
+        <p>Umfassende physiotherapeutische Behandlungen für Ihre Gesundheit</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="https://picsum.photos/seed/physio1/600/400" alt="Manuelle Therapie">
+          <div class="service-content">
+            <h3>Manuelle Therapie</h3>
+            <p>Spezielle Handgrifftechniken zur Behandlung von Gelenk- und Muskulaturproblemen.</p>
           </div>
-          <h3 class="feature-title">Erfahrene Therapeuten</h3>
-          <p class="feature-text">Unser Team besteht aus qualifizierten Fachkräften mit langjähriger Erfahrung.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div class="service-card">
+          <img src="https://picsum.photos/seed/physio2/600/400" alt="Krankengymnastik">
+          <div class="service-content">
+            <h3>Krankengymnastik</h3>
+            <p>Übungen zur Wiederherstellung von Beweglichkeit, Kraft und Funktion.</p>
           </div>
-          <h3 class="feature-title">Qualitätssicherung</h3>
-          <p class="feature-text">Regelmäßige Fortbildungen und zertifizierte Behandlungsmethoden.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <div class="service-card">
+          <img src="https://picsum.photos/seed/physio3/600/400" alt="Massage">
+          <div class="service-content">
+            <h3>Massage</h3>
+            <p>Therapeutische Massagen zur Muskelentspannung und Schmerzlinderung.</p>
           </div>
-          <h3 class="feature-title">Persönliche Betreuung</h3>
-          <p class="feature-text">Individuelle Behandlungspläne, die auf Ihre Bedürfnisse abgestimmt sind.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="service-card">
+          <img src="https://picsum.photos/seed/physio4/600/400" alt="Sportphysiotherapie">
+          <div class="service-content">
+            <h3>Sportphysiotherapie</h3>
+            <p>Spezielle Betreuung für Sportler zur Leistungssteigerung und Verletzungsprävention.</p>
           </div>
-          <h3 class="feature-title">Flexible Zeiten</h3>
-          <p class="feature-text">Termine auch außerhalb der regulären Öffnungszeiten möglich.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cards-section reveal" id="leistungen">
+  <!-- USP -->
+  <section class="usp-section">
     <div class="container">
-      <h2 class="section-title">Unsere Leistungen</h2>
-      <div class="cards-grid">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop" alt="Manuelle Therapie" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Manuelle Therapie</h3>
-            <p class="card-text">Spezielle Techniken zur Behandlung von Gelenk- und Muskulaturproblemen.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop" alt="Krankengymnastik" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Krankengymnastik</h3>
-            <p class="card-text">Übungen zur Wiederherstellung von Beweglichkeit und Funktion.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1609899464726-209befb4e8ac?w=600&h=400&fit=crop" alt="Massage" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Massage</h3>
-            <p class="card-text">Entspannende und therapeutische Massagen für Körper und Geist.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop" alt="Sportphysiotherapie" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Sportphysiotherapie</h3>
-            <p class="card-text">Betreuung von Sportlern zur Leistungssteigerung und Verletzungsprävention.</p>
-          </div>
-        </div>
+      <div class="section-header">
+        <h2>Was uns besonders macht</h2>
+        <p>Warum unsere Patienten uns vertrauen</p>
       </div>
-      <div style="text-align: center; margin-top: var(--spacing-lg);">
-        <a href="leistungen.html" class="btn">Alle Leistungen</a>
+      <div class="usp-grid">
+        <div class="usp-card">
+          <div class="usp-icon">★</div>
+          <h3>Qualität & Expertise</h3>
+          <p>Regelmäßige Fortbildungen und zertifizierte Behandlungsmethoden garantieren höchste Qualität.</p>
+        </div>
+        <div class="usp-card">
+          <div class="usp-icon">♥</div>
+          <h3>Persönliche Betreuung</h3>
+          <p>Individuelle Behandlungspläne, die auf Ihre ganz persönlichen Bedürfnisse abgestimmt sind.</p>
+        </div>
+        <div class="usp-card">
+          <div class="usp-icon">⚡</div>
+          <h3>Moderne Ausstattung</h3>
+          <p>Unsere Praxis verfügt über modernste Geräte und Techniken für optimale Behandlungsergebnisse.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="features reveal" id="beschwerden">
+  <!-- Team -->
+  <section class="section team-section">
     <div class="container">
-      <h2 class="section-title">Häufige Beschwerden</h2>
-      <div class="cards-grid cards-6">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=600&h=400&fit=crop" alt="Rückenschmerzen" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Rückenschmerzen</h3>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop" alt="Nackenschmerzen" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Nackenschmerzen</h3>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&h=400&fit=crop" alt="Gelenkschmerzen" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Gelenkschmerzen</h3>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=600&h=400&fit=crop" alt="Sportverletzungen" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Sportverletzungen</h3>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=600&h=400&fit=crop" alt="Kopfschmerzen" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Kopfschmerzen</h3>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop" alt="Postoperative Rehabilitation" class="card-image">
-          <div class="card-content">
-            <h3 class="card-title">Postoperative Rehabilitation</h3>
-          </div>
-        </div>
+      <div class="section-header">
+        <h2>Unser Team</h2>
+        <p>Lernen Sie unsere kompetenten Therapeuten kennen</p>
       </div>
-      <div style="text-align: center; margin-top: var(--spacing-lg);">
-        <a href="beschwerden.html" class="btn">Alle Beschwerden</a>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="https://picsum.photos/seed/therapist1/400/400" alt="Therapeut">
+          </div>
+          <h3>Max Bender</h3>
+          <p class="role">Inhaber & Leitender Therapeut</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="https://picsum.photos/seed/therapist2/400/400" alt="Therapeut">
+          </div>
+          <h3>Anna Schmidt</h3>
+          <p class="role">Physiotherapeutin</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="https://picsum.photos/seed/therapist3/400/400" alt="Therapeut">
+          </div>
+          <h3>Thomas Weber</h3>
+          <p class="role">Sportphysiotherapeut</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="testimonials reveal">
+  <!-- Beschwerden -->
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Das sagen unsere Patienten</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial">
-          <p class="testimonial-text">"Die beste Physiotherapie-Praxis, die ich je besucht habe. Das Team ist unglaublich kompetent und freundlich. Meine Rückenschmerzen sind nach nur wenigen Behandlungen verschwunden!"</p>
-          <p class="testimonial-author">Klaus Petersen</p>
-          <p class="testimonial-role">Patient seit 2020</p>
+      <div class="section-header">
+        <h2>Häufige Beschwerden</h2>
+        <p>Wir behandeln vielfältige Beschwerdebilder</p>
+      </div>
+      <div class="complaints-grid">
+        <div class="complaint-card">
+          <img src="https://picsum.photos/seed/complaint1/400/300" alt="Rücken">
+          <span>Rücken</span>
         </div>
-        <div class="testimonial">
-          <p class="testimonial-text">"Max Bender und sein Team haben mir nach meiner Knie-OP geholfen, schnell wieder fit zu werden. Die individuelle Betreuung ist erstklassig."</p>
-          <p class="testimonial-author">Sabine Hartmann</p>
-          <p class="testimonial-role">Patientin seit 2019</p>
+        <div class="complaint-card">
+          <img src="https://picsum.photos/seed/complaint2/400/300" alt="Nacken">
+          <span>Nacken</span>
         </div>
-        <div class="testimonial">
-          <p class="testimonial-text">"Tolles Team, sehr gute Beratung und Behandlung. Ich kann Physiotherapie Bender nur weiterempfehlen!"</p>
-          <p class="testimonial-author">Michael Koch</p>
-          <p class="testimonial-role">Patient seit 2021</p>
+        <div class="complaint-card">
+          <img src="https://picsum.photos/seed/complaint3/400/300" alt="Gelenke">
+          <span>Gelenke</span>
+        </div>
+        <div class="complaint-card">
+          <img src="https://picsum.photos/seed/complaint4/400/300" alt="Sport">
+          <span>Sport</span>
+        </div>
+        <div class="complaint-card">
+          <img src="https://picsum.photos/seed/complaint5/400/300" alt="Kopf">
+          <span>Kopf</span>
+        </div>
+        <div class="complaint-card">
+          <img src="https://picsum.photos/seed/complaint6/400/300" alt="Post-Op">
+          <span>Post-Op</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="process reveal">
-    <div class="container">
-      <h2 class="section-title">So funktioniert's</h2>
-      <div class="process-grid">
-        <div class="process-step">
-          <div class="process-number">1</div>
-          <h3 class="process-title">Termin vereinbaren</h3>
-          <p class="process-text">Rufen Sie uns an oder schreiben Sie uns eine Nachricht.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-number">2</div>
-          <h3 class="process-title">Erstberatung</h3>
-          <p class="process-text">Wir erheben Ihre Krankengeschichte und erstellen eine Diagnose.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-number">3</div>
-          <h3 class="process-title">Behandlung</h3>
-          <p class="process-text">Individuelle Therapie nach Ihrem persönlichen Behandlungsplan.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-number">4</div>
-          <h3 class="process-title">Nachsorge</h3>
-          <p class="process-text">Tipps und Übungen für zu Hause zur langfristigen Genesung.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="faq reveal">
-    <div class="container">
-      <h2 class="section-title">Häufig gestellte Fragen</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question">Wie lange dauert eine Behandlung?</button>
-          <div class="faq-answer">
-            <p>Eine physiotherapeutische Behandlung dauert in der Regel zwischen 20 und 60 Minuten, abhängig von Ihrer Indikation und dem Behandlungsplan.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Was muss ich zum ersten Termin mitbringen?</button>
-          <div class="faq-answer">
-            <p>Bitte bringen Sie Ihre Überweisung vom Arzt, eventuelle Vorbefunde sowie bequeme Kleidung mit.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Übernimmt die Krankenkasse die Kosten?</button>
-          <div class="faq-answer">
-            <p>Bei ärztlicher Verordnung übernimmt die gesetzliche Krankenkasse in der Regel einen Großteil der Kosten. Wir beraten Sie gerne persönlich.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Wie viele Sitzungen werden benötigt?</button>
-          <div class="faq-answer">
-            <p>Die Anzahl der Sitzungen ist abhängig von Ihrer Beschwerde und dem Heilungsverlauf. Nach der Erstuntersuchung erstellen wir einen Behandlungsplan.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Bieten Sie auch Hausbesuche an?</button>
-          <div class="faq-answer">
-            <p>Ja, wir bieten Hausbesuche für Patienten an, die nicht in unsere Praxis kommen können. Bitte sprechen Sie uns darauf an.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Wie kann ich einen Termin absagen?</button>
-          <div class="faq-answer">
-            <p>Bitte sagen Sie Termine mindestens 24 Stunden vorher ab, um Stornokosten zu vermeiden. Sie können uns telefonisch oder per E-Mail erreichen.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">Physiotherapie Bender</a>
-          <p class="footer-text">Ihre kompetente Praxis für moderne Physiotherapie und persönliche Betreuung seit 2002.</p>
+          <p>Ihre kompetente Praxis für moderne Physiotherapie und persönliche Betreuung seit 2002.</p>
         </div>
         <div>
-          <h4 class="footer-title">Kontakt</h4>
-          <ul class="footer-links">
-            <li class="footer-contact-item">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              <span>01234 / 567890</span>
-            </li>
-            <li class="footer-contact-item">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span>info@physio-bender.de</span>
-            </li>
-            <li class="footer-contact-item">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <span>Musterstraße 12, 12345 Musterstadt</span>
-            </li>
+          <h4>Kontakt</h4>
+          <ul>
+            <li>01234 / 567890</li>
+            <li>info@physio-bender.de</li>
+            <li>Musterstraße 12</li>
+            <li>12345 Musterstadt</li>
           </ul>
         </div>
         <div>
-          <h4 class="footer-title">Öffnungszeiten</h4>
-          <ul class="footer-links">
-            <li>Mo - Fr: 08:00 - 18:00 Uhr</li>
-            <li>Sa: 09:00 - 13:00 Uhr</li>
+          <h4>Öffnungszeiten</h4>
+          <ul>
+            <li>Mo - Fr: 08:00 - 18:00</li>
+            <li>Sa: 09:00 - 13:00</li>
             <li>So: Geschlossen</li>
           </ul>
         </div>
         <div>
-          <h4 class="footer-title">Links</h4>
-          <ul class="footer-links">
-            <li><a href="#leistungen">Leistungen</a></li>
-
-            <li><a href="#kontakt">Kontakt</a></li>
-            <li><a href="#">Datenschutz</a></li>
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#">Leistungen</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Kontakt</a></li>
+            <li><a href="#">Impressum</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Physiotherapie Bender. Alle Rechte vorbehalten.</p>
+        <p>© 2024 Physiotherapie Bender. Alle Rechte vorbehalten.</p>
       </div>
     </div>
   </footer>
-
-  <script>
-    document.querySelectorAll('.faq-question').forEach(button => {
-      button.addEventListener('click', () => {
-        const item = button.parentElement;
-        item.classList.toggle('active');
-      });
-    });
-
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const closeBtn = document.querySelector('.nav-menu .close-btn');
-    const navOverlay = document.querySelector('.nav-overlay');
-
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.add('active');
-      navOverlay.classList.add('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      navOverlay.classList.remove('active');
-    });
-
-    navOverlay.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      navOverlay.classList.remove('active');
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.reveal');
-      window.addEventListener('scroll', () => {
-        reveals.forEach(el => {
-          if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-        });
-      });
-    });
-  </script>
 </body>
 </html>
